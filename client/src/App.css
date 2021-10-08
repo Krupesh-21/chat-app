@@ -1,0 +1,241 @@
+:root {
+  --body-bg: #343a40;
+  --cr-fieldset-border-color: #ffd082;
+  --label-color: #47e4bb;
+  --legend-color: #ff7c7c;
+  --err-bg: #ebfffb;
+  --err-color: #ff5858;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--body-bg);
+}
+
+.container {
+  width: 80%;
+  margin-inline: auto;
+}
+.create-room-container {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  margin-top: 15em;
+  position: relative;
+}
+
+.create-room-fieldset {
+  padding: 1em;
+  border-color: var(--cr-fieldset-border-color);
+  width: 35%;
+}
+
+.create-room-fieldset legend {
+  color: var(--legend-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.create-room-fieldset > form {
+  width: 80%;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.create-room-fieldset label {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--label-color);
+  font-size: 1.3rem;
+}
+.create-room-fieldset input[type="text"] {
+  margin-bottom: 1.3em;
+  padding: 0.9em;
+  outline-color: var(--cr-fieldset-border-color);
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 0.9rem;
+  border: 1px solid rgb(180, 173, 173);
+  box-shadow: 4px 4px 2px rgb(0 0 0 / 20%);
+}
+
+.create-room-submit-btn {
+  width: 50%;
+  margin-inline: auto;
+  padding: 0.4em;
+  background-color: var(--legend-color);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  color: rgb(236, 232, 232);
+  font-weight: 800;
+  cursor: pointer;
+  /* border: 1px solid rgb(180, 173, 173); */
+  box-shadow: 3px 3px 3px #ff7c7cab;
+}
+
+.create-room-error {
+  background-color: var(--err-bg);
+  padding: 1.4em;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.1rem;
+  color: var(--err-color);
+  position: absolute;
+  animation: err-animation 0.8s ease-in-out;
+}
+
+@keyframes err-animation {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.chat-container {
+  margin-top: 6rem;
+  width: 70%;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 17rem 1fr 1fr;
+  grid-template-areas:
+    "room-name leave-btn leave-btn"
+    "username-list chat-display chat-display"
+    "send-box send-box send-box";
+  /* border: 2px solid var(--cr-fieldset-border-color); */
+  padding: 0.4em;
+}
+
+.chat-room-name {
+  grid-area: room-name;
+  background-color: #fdfdfd;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.chat-room-name > p {
+  margin-left: 10px;
+  font-weight: 600;
+  color: var(--body-bg);
+}
+
+.chat-leave-btn {
+  grid-area: leave-btn;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fdfdfd;
+  padding: 0.4em;
+}
+
+.chat-leave-btn > button {
+  width: 11%;
+  font-size: 1.1rem;
+  background-color: #e36161;
+  border: none;
+  outline: none;
+  padding: 0.1em;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #2c2c2c;
+  font-weight: 600;
+}
+
+.chat-friends {
+  grid-area: username-list;
+  background-color: #96baff;
+  height: 26rem;
+  border-right: 2px solid var(--body-bg);
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
+}
+
+.chat-friends > h2 {
+  margin-block: 6px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.chat-usernames-list {
+  text-align: justify;
+  margin-bottom: 0.3em;
+  padding-left: 1em;
+}
+
+.chat-usernames-list > p {
+  margin-block: 3px;
+}
+
+.chat-display {
+  grid-area: chat-display;
+  background-color: #f3f1f5;
+  padding: 0.5em;
+  /* display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content; */
+}
+
+.chat-send-box {
+  grid-area: send-box;
+  background-color: #867ae9;
+  padding: 0.7em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.chat-send-box input {
+  margin-inline: 7px;
+  padding: 0.7em;
+  width: 70%;
+  border: none;
+  outline: none;
+  box-shadow: 5px 5px 2px rgb(0 0 0 / 20%);
+  border-radius: 2px;
+}
+
+.chat-send-box button {
+  padding: 0.3em;
+  font-size: 1.3rem;
+  border: none;
+  outline: none;
+  background-color: #c6cbef;
+  width: 5%;
+  border-radius: 2px;
+  box-shadow: 4px 4px 2px rgb(0 0 0 / 20%);
+  cursor: pointer;
+}
+
+.message{
+  background-color: var(--body-bg);
+  width: max-content;
+  padding: 0.1em 0.4em 0.2em 0.4em;
+  border: none;
+  border-radius: 4px;
+  margin-top: 6px;
+}
+.message:first-of-type{
+  margin-top: 0;
+}
+.user-name{
+  color: #A287F4;
+}
+
+.user-message{
+  color: var(--err-bg);
+}
