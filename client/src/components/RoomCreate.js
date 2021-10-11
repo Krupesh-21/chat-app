@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useHistory } from "react-router";
-import { io } from "socket.io-client";
+import { createRoom } from "../socket";
 
 const RoomCreate = () => {
   const [roomName, setRoomName] = useState("");
   const [userName, setUserName] = useState("");
   const [err,setErr] = useState("")
-  const socket = io.connect("http://localhost:5000");
   const history = useHistory();
+  useEffect(() => {
+    window.addEventListener("click", ()=> setErr(""))
+    return () => {
+     window.removeEventListener("click", ()=> setErr(""));
+     console.log("executed");
+    }
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (roomName !== "" && userName !== "") {
-      socket.emit("joinRoom", { roomName, userName });
+      const name = userName[0].toUpperCase() + userName.slice(1);
+      createRoom({roomName,userName:name});
       history.push(`/${roomName}`);
     } else{
         setErr("Please Fill up the details!");
     }
   };
   const errShow=()=>{
-    setTimeout(()=> setErr(""),3000);
+    setTimeout(()=> setErr(""),5000);
     return <p className="create-room-error">{err}</p>;
   }
   return (
